@@ -2,6 +2,12 @@
 This repository contains the code for Churnalist, a headline generator. Churnalist is meant as a creative writing support tool for game writers. 
 
 ## Installation
+Download and extract the [FastText Wiki word vectors](https://fasttext.cc/docs/en/pretrained-vectors.html) for English and place them in data/fasttext.
+```
+$ wget https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.zip
+$ unzip -d data/fasttext wiki.en.zip
+```
+Install all requirements in a virtual environment:
 ```
 $ python -m venv venv
 $ source venv/bin/activate
