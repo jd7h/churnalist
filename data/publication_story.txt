@@ -1,0 +1,5 @@
+You are the system administrator of SuperSecure ltd, a hosting company. At four o'clock in the afternoon, your manager storms in. Apparently, there has been a break-in in your computer network. The CEO has been receiving anonymous emails from a hacker that demands a payment of $100,000 before midnight. If SuperSecure does not pay, they threaten to publish sensitive company documents online. The manager is worried, since the hacker claims to possess important intellectual property. 
+Manager: Can you find out how the hackers got into our systems? 
+CSIRT: We recognize this mode of operation. We will share some relevant IOCs with your company. Can you contact us if you have finished your forensical analysis?
+Security officer: There has been a nation-wide increase in phishing attacks in the past few days.
+System administrator: I can't find any traces of active malware on our Windows server. I will check the network log files for malicious activity.

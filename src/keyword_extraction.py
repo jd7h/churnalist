@@ -3,12 +3,12 @@ import nltk
 import spacy
 
 def parse_plaintext(filename):
-    """Open a plaintext file with input text, tokenize into sentences
+    """Open a plaintext file with input text and tokenize into sentences
 
     Keyword arguments:
     filename -- filename of the plaintext file with input text
     """
-    # parse testdate from a plaintext file
+    # get input from a plaintext file
     t = ""
     with open(filename, "r") as infile:
         t = " ".join(infile.readlines())
@@ -108,7 +108,7 @@ def freqdist(nouns, top_n):
     fdist -- a nltk.FreqDist object of all words and their frequency
     """
     # preprocessing: we make everything lowercase
-    # note that this might go wrong for proper names/jargon ("ROT13")
+    # note that this might be a bad idea for proper names and jargon ("ROT13")
     nouns_lower = [n.lower() for n in nouns]
     # Calculate frequency distribution
     fdist = nltk.FreqDist(nouns_lower)
@@ -117,12 +117,13 @@ def freqdist(nouns, top_n):
         print(u'{};{}'.format(word, frequency))
     return fdist
 
+#deprecated
 def get_seed_words(filename, lang="nl"):
-    """Create a list of 20 seedwords from a plaintext file
+    """Create a list of 20 seedwords, based on a story in a plaintext file
 
     Keyword arguments:
     filename -- filename of the plaintext file with input text
-    lang -- language "nl" or "english" (Default: "nl")
+    lang -- language "nl" or "en" (Default: "nl")
 
     Returns:
     parserinfo -- list of parser-information for every sentence
@@ -137,6 +138,5 @@ def get_seed_words(filename, lang="nl"):
 
 def test_keyword_extraction():
     """Test keyword extraction with a test file"""
-
-    #todo
-    pass
+    sentences = parse_plaintext("../data/publication_story.txt")
+    get_noun_chunk_list(sentences)
