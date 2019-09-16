@@ -139,4 +139,6 @@ def get_seed_words(filename, lang="nl"):
 def test_keyword_extraction():
     """Test keyword extraction with a test file"""
     sentences = parse_plaintext("../data/publication_story.txt")
-    get_noun_chunk_list(sentences)
+    print(sentences)
+    print(get_noun_chunk_list(sentences))
+    

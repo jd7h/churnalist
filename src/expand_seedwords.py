@@ -126,7 +126,11 @@ def get_related_words(method, word, lang, results, fasttextwrapper):
 
 def get_related_words_conceptnet(word, lang, results, min_threshold, max_threshold):
     # do conceptnet api request for related words in specific language
-    api_result = requests.get("http://api.conceptnet.io/related/c/" + lang + "/" + word + "?filter=/c/" + lang).json()
+    try:
+        api_result = requests.get("http://api.conceptnet.io/related/c/" + lang + "/" + word + "?filter=/c/" + lang).json()
+    except Error as e:
+        print(e, type(e))
+        return []
     # filter related words on min and max threshold
     related_words = [rw for rw in api_result['related'] if rw['weight'] > min_threshold and rw['weight'] < max_threshold]
     # post-process words from result: extract from json and remove underscores
@@ -142,7 +146,7 @@ def get_related_words_conceptnet(word, lang, results, min_threshold, max_thresho
     
 def test_expand_seedwords(lang="en"):
     """ this function is meant to demonstrate this class """
-    lazyfasttext = LazyFastText(lang)
+    lazyfasttext = LazyFastText("en_gensimfast") # or "en" if you haven't transformed the .vec/.bin files yet
     testwords = ["cat","demon","biscuit","malware"]
     for word in testwords:
         print(word)
