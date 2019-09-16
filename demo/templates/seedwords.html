@@ -29,7 +29,7 @@ checkboxes
 </form>
 -->
 <h2>Select input seedwords</h2>
-<form action = "/seedwords_select" method = "POST">
+<form action = "/generate_interactive" method = "POST">
 <select name="human_approved" multiple size="15">
 {% for headnoun in contextwords.keys() %}
 {% for nounphrase in contextwords[headnoun] %}

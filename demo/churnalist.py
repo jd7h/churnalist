@@ -216,12 +216,13 @@ def process_input():
 
 def fancy_ticker(inputtext):
     churn = StaticChurnalist(inputtext)
-    return Response(stream_template('fancyticker.html', big_headlines=postprocess_ticker(churn.generate(25)), ticker_headlines=postprocess_ticker(churn.generate(25)), title="Churnalist: fake news"))
+    return Response(stream_template('fancyticker.html', big_headlines=postprocess_ticker(churn.generate(5)), ticker_headlines=postprocess_ticker(churn.generate(5)), title="Churnalist: fake news"))
 
 def interactive_step1(inputtext):
     churn = StaticChurnalist(inputtext)
     return render_template('seedwords.html', title="Seed word picker", contextwords = churn.contextwords)
 
+@app.route('/generate_interactive', methods=['POST'])
 def interactive_step2():
     if request.method != 'POST':
         return ""
@@ -229,4 +230,4 @@ def interactive_step2():
         approved_list = request.form.getlist('human_approved')
         manual_list = [word.strip() for word in request.form['manual_seedwords'].split("\n")]
         churn = InteractiveChurnalist(approved_list + manual_list, BLACKLIST)
-        return Response(stream_template('fancyticker.html', big_headlines=postprocess_ticker(churn.generate(25)), ticker_headlines=postprocess_ticker(churn.generate(25)), title="Churnalist: fake news"))
+        return Response(stream_template('fancyticker.html', big_headlines=postprocess_ticker(churn.generate(5)), ticker_headlines=postprocess_ticker(churn.generate(5)), title="Churnalist: fake news"))
