@@ -18,6 +18,17 @@ Download and extract the [FastText Wiki word vectors](https://fasttext.cc/docs/e
 $ wget https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.zip
 $ unzip -d data/fasttext wiki.en.zip
 ```
+
+### Running the Flask demo
+The folder `demo/` contains a Flask App with a non-interactive and an interactive demo of Churnalist. To run it locally, do the following after the installation:
+```
+$ source venv/bin/activate
+$ cd demo
+$ export FLASK_APP=churnalist.py
+$ export FLASK_DEBUG=1 # if you would like debug info & auto-reload upon code changes
+$ flask run
+```
+
 ## Scientific publication
 Churnalist is part of the [DATA2GAME](https://www.data2game.nl) research project and based on research by Judith van Stegeren and [Mariët Theune](https://wwwhome.ewi.utwente.nl/~theune/). 
 
