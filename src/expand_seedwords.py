@@ -76,12 +76,12 @@ class LazyFastText:
         fmodel -- language model for lang in fastText format
         """
         # dutch
-        NL_model_vec = "/home/judith/phd/8_social_media_noise/src/knowledge_base/word_embeddings/fasttextwiki/wiki.nl.vec"
-        NL_model_bin = "/home/judith/phd/8_social_media_noise/src/knowledge_base/word_embeddings/fasttextwiki/wiki.nl.bin"
+        NL_model_vec = "../data/fasttext/wiki.nl.vec"
+        NL_model_bin = "../data/fasttext/wiki.nl.bin"
         # english
-        EN_model_vec = "/home/judith/phd/8_social_media_noise/src/knowledge_base/word_embeddings/wiki.en.vec"
-        EN_model_bin = "/home/judith/phd/8_social_media_noise/src/knowledge_base/word_embeddings/wiki.en.bin"
-        EN_model_gensim_bin = "/home/judith/phd/8_social_media_noise/src/knowledge_base/word_embeddings/wiki.en.gensim.bin"
+        EN_model_vec = "../data/fasttext/wiki.en.vec"
+        EN_model_bin = "../data/fasttext/wiki.en.bin"
+        EN_model_gensim_bin = "../data/fasttext/wiki.en.gensim.bin"
 
         if self.lang == "nl":
             print("Loading fastText model in gensim...")
@@ -97,39 +97,9 @@ class LazyFastText:
             print("Loading fastText model in gensim...")
             self._gmodel = gensim.models.KeyedVectors.load_word2vec_format(EN_model_gensim_bin, binary=True)
             print("Loading fastText model in fastText...")
-            self._fmodel = fasttext.load_model(EN_model_bin)        
+            self._fmodel = fasttext.load_model(EN_model_bin)  
         else:
             pass
-
-def test_KB(gmodel, fmodel, lang="nl"):
-    """Test function for the knowledge base.
-
-    For all words in the testset, show the most similar words in the KB.
-    If a word in the testset is a out-of-vocabulary word, compute a word vector for
-    it using fastText's language model and then show the most similar words.
-
-    Keyword arguments:
-    gmodel -- language model for lang in gensim's word2vec_format
-    fmodel -- language model for lang in fastText format
-    lang -- language "nl" or "en"
-    """
-    NL_testwords = ["kat", "brandweer", "brandweercommandant", "ambulance", "crisislocatie"]
-    EN_testwords = ["cat", "fireman", "commander", "ambulance", "crisis location"]
-    if lang == "nl":
-        testwords = NL_testwords
-    elif lang == "en":
-        testwords = EN_testwords
-    else:
-        raise ValueError
-    for word in testwords:
-        try:
-            sim = gmodel.most_similar(word)
-        except KeyError as e:
-            print(e)
-            print("Using fastText computed vector based on subwords")
-            sim = gmodel.similar_by_vector(fmodel.get_word_vector(word))
-        for w in sim:
-            print(w)
 
 def get_related_words(method, word, lang, results, fasttextwrapper):
     """Given a word, return a list of similar words according to arg method.
@@ -147,7 +117,7 @@ def get_related_words(method, word, lang, results, fasttextwrapper):
         if lang=="en":
             return fasttextwrapper.get_related_words(word, lang, 1000, results, 0.6)
         else:
-            raise Warning("This function has not been implemented for 'nl' yet.")
+            raise Warning("This function has not been implemented for languages other than English yet.")
             return []
     elif method == "conceptnet":
         return get_related_words_conceptnet(word, lang, results, 0.5, 1)
@@ -170,5 +140,13 @@ def get_related_words_conceptnet(word, lang, results, min_threshold, max_thresho
     else:
         return related_words_str
     
-
-
+def test_expand_seedwords(lang="en"):
+    """ this function is meant to demonstrate this class """
+    lazyfasttext = LazyFastText(lang)
+    testwords = ["cat","demon","biscuit","malware"]
+    for word in testwords:
+        print(word)
+        print("Conceptnet:")
+        print(get_related_words("conceptnet", word, lang, 5, lazyfasttext))
+        print("FastText:")
+        print(get_related_words("fasttext", word, lang, 5, lazyfasttext))
