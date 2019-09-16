@@ -1,0 +1,22 @@
+<!doctype html>
+<head>
+{% if title %}
+<title>{{ title }}</title>
+{% endif %}
+<body style="">
+<h1>Please enter input text</h1>
+<p>The generator will use this text as a starting point for headline generation.</p>
+<br>
+<form style="display:inline;" action = "/generate" method = "POST">
+<textarea name="inputtext" rows="15" cols="90">
+The Conference on Games (CoG) evolves from the traditional Computational Intelligence and Games (CIG) to bring together leading researchers and practitioners from academia and industry in the field of Games, to discuss recent advances and explore future directions. Games offer a fantastic domain for computational creativity, game design, technology, education, social sciences and, undoubtedly, artificial and computational intelligence. The annual IEEE Conference on Games (IEEE CoG) seeks to share insights and cutting-edge 
+research related to game technologies and design, covering scientific, technical, and engineering aspects of games. IEEE CoG 2019 will include presentations of peer-reviewed papers, invited talks by high-profile industry and academic leaders, panels, posters and demos. We welcome papers related to all aspects of Games. 
+</textarea><br>
+<button name="generator_type" value="noninteractive" type="submit">Non-interactive generation</button>
+<button name="generator_type" value="interactive" type="submit">Interactive generation</button>
+
+</form>
+
+</body>
+</head>
+</html>

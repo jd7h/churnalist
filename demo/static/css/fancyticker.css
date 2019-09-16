@@ -1,0 +1,125 @@
+      body{
+  background-image:url('https://images.unsplash.com/photo-1415025148099-17fe74102b28?ixlib=rb-1.2.1&auto=format&fit=crop&w=2040&q=80');
+  color:white;
+  min-height:600px;
+  overflow:hidden;
+}
+
+#main{
+  margin:75px 50px;
+}
+
+#footer{
+  position:fixed;
+  bottom:0px;
+  margin:0px;
+}
+
+#newssource{margin:50px;}
+#name{font-size:2em;}
+#description{font-size:1em;}
+#location{font-weight:bold;}
+
+#floatingbox{
+  float:right;
+  border:1px solid black;
+    background-color:#ffd105;
+  margin:25px 50px 0 0;
+  padding:0em 1em;
+  color:black;
+  text-align:center;
+}
+
+#breaking{
+  background-color:#ffd105;
+  color:black;
+  font-style:italic;
+  font-weight:bold;
+  display:inline;
+  padding:0.2em 0.5em;
+  font-size:2em;
+}
+
+#mainheadlines{
+  background-color:white;
+  border-left:15px solid #ffd105;
+  margin-top:7px;
+  padding:1em;
+}
+
+.headline{
+ font-size:3em; 
+ list-style-type: none;
+ display:none;
+ margin:1em 0;
+ color:black;
+ padding:2em;
+ margin-left:0;
+ padding-left:0;
+ text-transform:uppercase;
+ font-weight:bold;
+}
+
+.nr{
+  display:none;
+}
+
+#placeholder{
+  display:inline;
+}
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+.ticker-wrap {
+  position: fixed; /* to deal with changing size of main headlines */
+  top: 600px; /* enough room for three lines of text */
+  width: 100%;
+  overflow: hidden;
+  height: 4rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding-left: 100%;
+  box-sizing: content-box;
+}
+.ticker-wrap .ticker {
+  display: inline-block;
+  height: 4rem;
+  line-height: 4rem;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 100s;
+  animation-duration: 100s;
+  animation-delay:5s;
+}
+.ticker-wrap .ticker__item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 2rem;
+  color: white;
+}

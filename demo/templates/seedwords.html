@@ -1,0 +1,59 @@
+<!doctype html>
+<head>
+{% if title %}
+<title>{{ title }}</title>
+{% endif %}
+<body style="">
+<h1>Seed word selection</h1>
+<p>Churnalist has found the following noun phrases in the input text. 
+Select the seedwords you want to use in the generated headlines.</p>
+<!--
+Optie 1: gewoon een lijst
+<ul>
+{% for headnoun in contextwords.keys() %}
+    {% for nounphrase in contextwords[headnoun] %}
+    <li>{{headnoun}} : {{ nounphrase }}</li>
+    {% endfor %}
+{% endfor %}
+</ul>-->
+
+<!--
+Optie 2:
+checkboxes
+<form>
+{% for headnoun in contextwords.keys() %}
+{% for nounphrase in contextwords[headnoun] %}
+<input checked type="checkbox" name="approved_seedword{{loop.index}}" value="{{nounphrase}}">{{nounphrase}}<br>
+{%endfor%}{%endfor%}
+</select>
+</form>
+-->
+<h2>Select input seedwords</h2>
+<form action = "/seedwords_select" method = "POST">
+<select name="human_approved" multiple size="15">
+{% for headnoun in contextwords.keys() %}
+{% for nounphrase in contextwords[headnoun] %}
+<option selected value="{{nounphrase}}">{{nounphrase}}</option>
+{%endfor%}{%endfor%}
+</select></br>
+
+{% if related_words %}
+<h2>Select related words</h2>
+There are no related words available for the input.
+{% endif %}
+
+<h2>Add additional seedwords</h2>
+<p>Fill in additional seedwords that the generator should include, separated by a newline.</p>
+<textarea name="manual_seedwords" rows="15" cols="50">
+text-based games
+ground-breaking research
+procedural generation
+digital games
+</textarea><br>
+
+<button type="submit">Submit seedwords</button>
+</form>
+
+</body>
+</head>
+</html>

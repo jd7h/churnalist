@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>{{ title }}</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+      <script type="text/javascript" src="//stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+      <link rel="stylesheet" type="text/css" href="static/css/fancyticker.css">
+      <script type="text/javascript" src="static/js/fancyticker-ticker.js"></script>
+      <script type="text/javascript" src="static/js/fancyticker-klok.js"></script>
+
+</head>
+<body>
+    <!-- 
+  Bootstrap docs: https://getbootstrap.com/docs
+-->
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<h4 class="alert-heading">This page contains fake news. <span class="badge badge-danger">Fake news</span>
+</h4>
+<p>All news-items on this page are computer generated and (hopefully) fictional. Generated content was not checked by a human prior to publication.</p>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div id="floatingbox">
+
+
+<div id="location">
+Enschede, Netherlands
+</div>
+<div id="timer">
+12:00
+</div>
+</div>
+
+<div id="newssource">
+<h1 id="name">
+<span class="badge badge-warning">LIVE</span> from the Churnalist newsroom
+</h1>
+<h2 id="description">
+Automatic computer generated news for lazy game writers
+</h2>
+
+</div>
+
+<div id="footer" class="alert alert-secondary">
+Background by <a href="https://unsplash.com/photos/Maf7wdHCmvo">Thong Vo</a> on Unsplash. <a href="https://github.com/jd7h/churnalist">Churnalist code</a> by Judith van Stegeren, based on <a href="https://judithvanstegeren.com/assets/1905-churnalist2019vanstegeren-iccc2019.pdf">research</a> by Judith van Stegeren and Mariët Theune.
+</div>
+
+<div id="main">
+<h1 id="breaking">Breaking fake news</h1><br>
+<ul id="mainheadlines">
+<li id="placeholder" class="headline">Loading headlines...</li>
+{% for headline in big_headlines %}
+<li class="headline">{{headline}}</li>
+{% endfor %}
+</ul>
+</div>
+
+
+<div class="ticker-wrap">
+<div class="ticker">
+{% for headline in ticker_headlines %}
+<div class="ticker__item">{{headline}}</div>
+{% endfor %}
+</div>
+</div>
+
+
+
+</body>
+</html>
+
