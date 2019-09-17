@@ -4,10 +4,14 @@ This repository contains the code for Churnalist, a headline generator. Churnali
 ## Installation (Linux)
 Install all requirements in a virtual environment:
 ```
-$ python -m venv venv # create a virtual environment
-$ source venv/bin/activate # active the virtual environment
+$ python -m venv venv             # create a virtual environment
+$ source venv/bin/activate        # active the virtual environment
 $ pip install -r requirements.txt # install all required packages with pip
+$ python                          # start Python
+>>> nltk.download('punkt')        # use nltk downloader to download 'punkt' and 'stopwords'
+>>> nltk.download('stopwords')
 ```
+
 
 ### Datasets for seedword extrapolation
 Churnalist uses ConceptNet and FastText to expand the list of seedwords if the input text is short. The ConceptNet API requires a working internet connection and is relatively fast. FastText requires the large (15+ Gb) FastText language models but work completely offline. Since the suggestions of ConceptNet are better than FastText's and FastText models take a long time to load, Churnalist uses FastText as a fall-back method if ConceptNet doesn't work.
@@ -21,11 +25,11 @@ $ unzip -d data/fasttext wiki.en.zip # extract the model in data/fasttext
 ### Running the Flask demo
 The folder `demo/` contains a Flask App with a non-interactive and an interactive demo of Churnalist. To run it locally, do the following after the installation steps described above:
 ```
-$ source venv/bin/activate # activate the virtual environment you created earlier
-$ cd demo # go the Flask demo folder
-$ export FLASK_APP=churnalist.py # tell Flask where the app is
-$ export FLASK_DEBUG=1 # if you would like debug info & auto-reload upon code changes
-$ flask run # run the Flask app
+$ source venv/bin/activate        # activate the virtual environment you created earlier
+$ cd demo                         # go the Flask demo folder
+$ export FLASK_APP=churnalist.py  # tell Flask where the app is
+$ export FLASK_DEBUG=1            # if you would like debug info & auto-reload upon code changes
+$ flask run                       # run the Flask app
 ```
 
 ## Scientific publication
