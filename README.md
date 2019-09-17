@@ -1,7 +1,7 @@
 # Churnalist
 This repository contains the code for Churnalist, a headline generator. Churnalist is meant as a creative writing support tool for game writers. 
 
-## Installation
+## Installation (Linux)
 Install all requirements in a virtual environment:
 ```
 $ python -m venv venv # create a virtual environment
