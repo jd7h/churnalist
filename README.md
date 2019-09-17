@@ -8,6 +8,7 @@ $ python -m venv venv             # create a virtual environment
 $ source venv/bin/activate        # active the virtual environment
 $ pip install -r requirements.txt # install all required packages with pip
 $ python                          # start Python
+>>> import nltk
 >>> nltk.download('punkt')        # use nltk downloader to download 'punkt' and 'stopwords'
 >>> nltk.download('stopwords')
 ```
